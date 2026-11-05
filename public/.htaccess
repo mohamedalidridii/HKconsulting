@@ -1,0 +1,12 @@
+# Apache only (Plesk usually runs Apache behind nginx). If it has no effect, set the same rules in
+# Plesk: Hosting settings → Preferred domain = www, and add the redirects below there.
+RewriteEngine On
+
+# One address for Google: https + www.
+RewriteCond %{HTTPS} off [OR]
+RewriteCond %{HTTP_HOST} !^www\. [NC]
+RewriteRule ^ https://www.hkconsult-kitchenldry.com%{REQUEST_URI} [L,R=301]
+
+# Old site's pages.
+RewriteRule ^contact\.html$ /contact/ [L,R=301]
+RewriteRule ^index\.html$ / [L,R=301]
